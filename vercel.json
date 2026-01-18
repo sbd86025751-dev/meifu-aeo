@@ -1,0 +1,8 @@
+{
+  "builds": [
+    {
+      "src": ".well-known/aeo/**",
+      "use": "@vercel/static"
+    }
+  ]
+}
