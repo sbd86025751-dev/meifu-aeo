@@ -4,5 +4,11 @@
       "src": ".well-known/aeo/**",
       "use": "@vercel/static"
     }
+  ],
+  "routes": [
+    {
+      "src": "/.well-known/aeo/.*",
+      "dest": "/.well-known/aeo/$1"
+    }
   ]
 }
