@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  fastapi:
+    build: .
+    container_name: fastapi_app
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - MEILI_URL=http://meilisearch:7700
+    depends_on:
+      - meilisearch
+
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    container_name: meilisearch
+    restart: always
+    ports:
+      - "7700:7700"
+    environment:
+      - MEILI_MASTER_KEY=your_key_here
+    volumes:
+      - ./meili_data:/meili_data
+
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.44.0-jammy
+    container_name: playwright_service
+    restart: always
+    command: /bin/sh -c "while true; do sleep 3600; done"
+
